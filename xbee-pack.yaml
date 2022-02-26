@@ -1,0 +1,28 @@
+schema-version: 1.0
+
+type: builder
+
+description: |
+
+in:
+  version: 1.46.5
+
+
+provision:
+  - url:
+      from: https://git.kernel.org/pub/scm/fs/ext2/e2fsprogs.git/snapshot/e2fsprogs-{% version %}.tar.gz
+      todir: "{% xbeeSrc %}"
+  - folder: "{% xbeeSrc %}/e2fsprogs-{% version %}/build"
+
+build:
+  - shell:
+      cmds:
+        - ../configure --prefix=/usr
+        - make
+        - make install DESTDIR={% xbeeOut %}
+      directory: "{% xbeeSrc %}/e2fsprogs-{% version %}/build"
+
+
+
+
+
