@@ -47,6 +47,7 @@ in:
 
 dependencies:
   - pkg-config
+  - util-linux
 
 provision:
   - url:
@@ -57,7 +58,7 @@ provision:
 build:
   - shell:
       cmds:
-        - ../configure --prefix=/usr
+        - ../configure --prefix=/usr --sysconfdir=/etc --enable-elf-shlibs --disable-libblkid --disable-libuuid --disable-uuidd --disable-fsck
         - make
         - make install DESTDIR={% xbeeOut %}
         - rm -fv {% xbeeOut %}/usr/lib/{libcom_err,libe2p,libext2fs,libss}.a
